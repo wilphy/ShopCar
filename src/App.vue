@@ -1,16 +1,21 @@
 <template>
   <div id="app">
     <!-- <router-view/> -->
+    <!-- 商品列表 -->
     <product></product>
+
+    <!-- 购物车列表 -->
+    <cart></cart>
   </div>
 </template>
 
 <script>
 import product from './components/product'
+import cart from './components/cart'
 
 export default {
   name: 'App',
-  components: {product}
+  components: {product, cart}
 }
 </script>
 

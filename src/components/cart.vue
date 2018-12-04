@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1> {{ msg }} </h1>
+  <div class="cart">
+    <h1> 已选商品</h1>
     <table class="table table-hover table-bordered">
       <thead>
         <tr>
@@ -11,12 +11,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="n in shoplist" v-bind:key="n">
+        <tr v-for="n in cartProducts" v-bind:key="n">
           <td> {{ n.id }} </td>
           <td> {{ n.name }} </td>
           <td> {{ n.price }} </td>
+          <td> {{ n.num }} </td>
           <td>
-            <div @click="addToCart(n)" class="btn btn-info">添加</div>
+            <div @click="addToCart(n)" class="btn btn-danger">删除</div>
           </td>
         </tr>
       </tbody>
@@ -25,27 +26,26 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
-  name: 'product',
+  name: 'cart',
   data () {
-    return {
-      msg: 'vuex购物车'
-    }
+    return {}
   },
   computed: {
   // 使用对象展开运算符将 getter 混入 computed 对象中
     // 映射数据，vuex中的cart模块的getters里
     ...mapGetters([
-      'shoplist'
-    ])
-  },
-  methods: {
-    // 映射事件，vuex中的cart模块的actions里
-    ...mapActions([
-      'addToCart'
+      'cartProducts'
     ])
   }
+  // methods: {
+  //   // 映射事件，vuex中的cart模块的actions里
+  //   ...mapActions([
+  //     'addToCart'
+  //   ])
+  // }
 }
+
 </script>

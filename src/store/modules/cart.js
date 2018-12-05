@@ -34,6 +34,24 @@ const getters = {
         num
       }
     })
+  },
+
+  // 计算总数
+  totalNum: (state, getters) => {
+    let _total = 0
+    getters.cartProducts.forEach(n => {
+      _total += n.num
+    })
+    return _total
+  },
+
+  // 计算总价
+  totalPrice: (state, getters) => {
+    let _total = 0
+    getters.cartProducts.forEach(n => {
+      _total += n.price * n.num
+    })
+    return _total
   }
 }
 
@@ -45,6 +63,16 @@ const actions = {
     commit('add', {
       id: n.id
     })
+  },
+
+  // 清空购物车
+  clearAllCart ({commit}) {
+    commit('clearAll')
+  },
+
+  // 删除商品
+  delGoods ({commit}, n) {
+    commit('delGoods', n)
   }
 }
 
@@ -62,6 +90,20 @@ const mutations = {
     } else {
       _n.num++
     }
+  },
+
+  // 清空购物车
+  clearAll (state) {
+    state.added = []
+  },
+
+  // 删除商品
+  delGoods (state, _goods) {
+    state.added.forEach((n, i) => {
+      if (n.id === _goods.id) {
+        state.added.splice(i, 1)
+      }
+    })
   }
 }
 

@@ -1,13 +1,14 @@
 <template>
   <div class="cart">
-    <h1> 已选商品</h1>
+    <h1>已选商品</h1>
     <table class="table table-hover table-bordered">
       <thead>
         <tr>
           <th>id</th>
           <th>名称</th>
           <th>价格</th>
-          <th>操作</th>
+          <th>数量</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -17,7 +18,7 @@
           <td> {{ n.price }} </td>
           <td> {{ n.num }} </td>
           <td>
-            <div @click="addToCart(n)" class="btn btn-danger">删除</div>
+            <div @click="delGoods(n)" class="btn btn-warning">删除</div>
           </td>
         </tr>
       </tbody>
@@ -26,7 +27,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'cart',
@@ -39,13 +40,11 @@ export default {
     ...mapGetters([
       'cartProducts'
     ])
+  },
+  methods: {
+    // 映射事件，vuex中的cart模块的actions里
+    ...mapActions(['delGoods'])
   }
-  // methods: {
-  //   // 映射事件，vuex中的cart模块的actions里
-  //   ...mapActions([
-  //     'addToCart'
-  //   ])
-  // }
 }
 
 </script>

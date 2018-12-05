@@ -7,7 +7,7 @@
           <th>id</th>
           <th>名称</th>
           <th>价格</th>
-          <th>操作</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
